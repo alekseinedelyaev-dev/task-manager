@@ -1,5 +1,5 @@
 public class SimpleTask extends Task {
-    protected String title;
+    private final String title;
 
     public SimpleTask(int id, String title) {
         super(id);
@@ -12,9 +12,6 @@ public class SimpleTask extends Task {
 
     @Override
     public boolean matches(String query) {
-        if (title.contains(query)) {
-            return true;
-        }
-        return false;
+        return title.contains(query);
     }
 }

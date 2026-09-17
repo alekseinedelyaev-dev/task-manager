@@ -5,40 +5,57 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TodosTest {
 
     @Test
-    public void shouldAddTasks() {
-        Todos manager = new Todos();
+    public void shouldAddThreeTasksOfDifferentType() {
+        Todos todos = new Todos();
 
-        SimpleTask task1 = new SimpleTask(1, "Позвонить родителям");
-        SimpleTask task2 = new SimpleTask(2, "Купить молоко");
+        SimpleTask simpleTask = new SimpleTask(
+                1,
+                "Позвонить родителям"
+        );
 
-        manager.add(task1);
-        manager.add(task2);
+        String[] subtasks = {
+                "Купить молоко",
+                "Позвонить родителям",
+                "Сделать домашнее задание"
+        };
+        Epic epic = new Epic(2, subtasks);
 
-        Task[] expected = {task1, task2};
-        Task[] actual = manager.getTasks();
+        Meeting meeting = new Meeting(
+                3,
+                "Обсуждение проекта",
+                "Нетология",
+                "10:00"
+        );
+
+        todos.add(simpleTask);
+        todos.add(epic);
+        todos.add(meeting);
+
+        Task[] expected = {simpleTask, epic, meeting};
+        Task[] actual = todos.findAll();
 
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldSearchSimpleTask() {
-        Todos manager = new Todos();
+        Todos todos = new Todos();
 
         SimpleTask task1 = new SimpleTask(1, "Позвонить родителям");
         SimpleTask task2 = new SimpleTask(2, "Купить молоко");
 
-        manager.add(task1);
-        manager.add(task2);
+        todos.add(task1);
+        todos.add(task2);
 
         Task[] expected = {task1};
-        Task[] actual = manager.search("родителям");
+        Task[] actual = todos.search("родителям");
 
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldSearchEpic() {
-        Todos manager = new Todos();
+        Todos todos = new Todos();
 
         String[] subtasks = {
                 "Купить молоко",
@@ -48,17 +65,17 @@ public class TodosTest {
 
         Epic epic = new Epic(3, subtasks);
 
-        manager.add(epic);
+        todos.add(epic);
 
         Task[] expected = {epic};
-        Task[] actual = manager.search("домашнее");
+        Task[] actual = todos.search("домашнее");
 
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldSearchMeeting() {
-        Todos manager = new Todos();
+        Todos todos = new Todos();
 
         Meeting meeting = new Meeting(
                 4,
@@ -67,23 +84,23 @@ public class TodosTest {
                 "10:00"
         );
 
-        manager.add(meeting);
+        todos.add(meeting);
 
         Task[] expected = {meeting};
-        Task[] actual = manager.search("Нетология");
+        Task[] actual = todos.search("Нетология");
 
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldReturnEmptyArrayWhenNothingFound() {
-        Todos manager = new Todos();
+        Todos todos = new Todos();
 
         SimpleTask task = new SimpleTask(1, "Позвонить родителям");
-        manager.add(task);
+        todos.add(task);
 
         Task[] expected = {};
-        Task[] actual = manager.search("магазин");
+        Task[] actual = todos.search("магазин");
 
         assertArrayEquals(expected, actual);
     }

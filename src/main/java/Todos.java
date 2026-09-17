@@ -12,7 +12,7 @@ public class Todos {
         tasks = tmp;
     }
 
-    public Task[] getTasks() {
+    public Task[] findAll() {
         return tasks;
     }
 

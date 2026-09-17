@@ -1,7 +1,7 @@
 import java.util.Objects;
 
 public class Task {
-    protected int id;
+    private final int id;
 
     public Task(int id) {
         this.id = id;

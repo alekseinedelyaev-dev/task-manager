@@ -1,7 +1,7 @@
 public class Meeting extends Task {
-    protected String topic;
-    protected String project;
-    protected String start;
+    private final String topic;
+    private final String project;
+    private final String start;
 
     public Meeting(int id, String topic, String project, String start) {
         super(id);
