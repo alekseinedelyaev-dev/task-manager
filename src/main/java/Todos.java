@@ -1,15 +1,20 @@
 public class Todos {
+
     private Task[] tasks = new Task[0];
 
-    public void add(Task task) {
-        Task[] tmp = new Task[tasks.length + 1];
+    private Task[] addToArray(Task[] current, Task task) {
+        Task[] tmp = new Task[current.length + 1];
 
-        for (int i = 0; i < tasks.length; i++) {
-            tmp[i] = tasks[i];
+        for (int i = 0; i < current.length; i++) {
+            tmp[i] = current[i];
         }
 
         tmp[tmp.length - 1] = task;
-        tasks = tmp;
+        return tmp;
+    }
+
+    public void add(Task task) {
+        tasks = addToArray(tasks, task);
     }
 
     public Task[] findAll() {
@@ -21,14 +26,7 @@ public class Todos {
 
         for (Task task : tasks) {
             if (task.matches(query)) {
-                Task[] tmp = new Task[result.length + 1];
-
-                for (int i = 0; i < result.length; i++) {
-                    tmp[i] = result[i];
-                }
-
-                tmp[tmp.length - 1] = task;
-                result = tmp;
+                result = addToArray(result, task);
             }
         }
 
