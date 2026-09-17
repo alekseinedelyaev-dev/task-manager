@@ -2,43 +2,43 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TaskManagerTest {
+public class TodosTest {
 
     @Test
     public void shouldAddTasks() {
-        TaskManager manager = new TaskManager();
+        Todos manager = new Todos();
 
-        SimpleTask task1 = new SimpleTask(1, "Позвонить родителям");
-        SimpleTask task2 = new SimpleTask(2, "Купить молоко");
+        SimpleTodo task1 = new SimpleTodo(1, "Позвонить родителям");
+        SimpleTodo task2 = new SimpleTodo(2, "Купить молоко");
 
         manager.add(task1);
         manager.add(task2);
 
-        Task[] expected = {task1, task2};
-        Task[] actual = manager.getTasks();
+        Todo[] expected = {task1, task2};
+        Todo[] actual = manager.getTasks();
 
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldSearchSimpleTask() {
-        TaskManager manager = new TaskManager();
+        Todos manager = new Todos();
 
-        SimpleTask task1 = new SimpleTask(1, "Позвонить родителям");
-        SimpleTask task2 = new SimpleTask(2, "Купить молоко");
+        SimpleTodo task1 = new SimpleTodo(1, "Позвонить родителям");
+        SimpleTodo task2 = new SimpleTodo(2, "Купить молоко");
 
         manager.add(task1);
         manager.add(task2);
 
-        Task[] expected = {task1};
-        Task[] actual = manager.search("родителям");
+        Todo[] expected = {task1};
+        Todo[] actual = manager.search("родителям");
 
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldSearchEpic() {
-        TaskManager manager = new TaskManager();
+        Todos manager = new Todos();
 
         String[] subtasks = {
                 "Купить молоко",
@@ -50,15 +50,15 @@ public class TaskManagerTest {
 
         manager.add(epic);
 
-        Task[] expected = {epic};
-        Task[] actual = manager.search("домашнее");
+        Todo[] expected = {epic};
+        Todo[] actual = manager.search("домашнее");
 
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldSearchMeeting() {
-        TaskManager manager = new TaskManager();
+        Todos manager = new Todos();
 
         Meeting meeting = new Meeting(
                 4,
@@ -69,21 +69,21 @@ public class TaskManagerTest {
 
         manager.add(meeting);
 
-        Task[] expected = {meeting};
-        Task[] actual = manager.search("Нетология");
+        Todo[] expected = {meeting};
+        Todo[] actual = manager.search("Нетология");
 
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldReturnEmptyArrayWhenNothingFound() {
-        TaskManager manager = new TaskManager();
+        Todos manager = new Todos();
 
-        SimpleTask task = new SimpleTask(1, "Позвонить родителям");
+        SimpleTodo task = new SimpleTodo(1, "Позвонить родителям");
         manager.add(task);
 
-        Task[] expected = {};
-        Task[] actual = manager.search("магазин");
+        Todo[] expected = {};
+        Todo[] actual = manager.search("магазин");
 
         assertArrayEquals(expected, actual);
     }

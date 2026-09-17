@@ -1,4 +1,4 @@
-public class Epic extends Task {
+public class Epic extends Todo {
     protected String[] subtasks;
 
     public Epic(int id, String[] subtasks) {

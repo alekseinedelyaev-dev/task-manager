@@ -1,9 +1,9 @@
 import java.util.Objects;
 
-public class Task {
+public class Todo {
     protected int id;
 
-    public Task(int id) {
+    public Todo(int id) {
         this.id = id;
     }
 
@@ -19,7 +19,7 @@ public class Task {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Task task = (Task) o;
+        Todo task = (Todo) o;
         return id == task.id;
     }
 

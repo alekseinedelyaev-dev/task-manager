@@ -1,4 +1,4 @@
-public class Meeting extends Task {
+public class Meeting extends Todo {
     protected String topic;
     protected String project;
     protected String start;
