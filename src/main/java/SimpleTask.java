@@ -1,7 +1,7 @@
-public class SimpleTodo extends Todo {
+public class SimpleTask extends Task {
     protected String title;
 
-    public SimpleTodo(int id, String title) {
+    public SimpleTask(int id, String title) {
         super(id);
         this.title = title;
     }

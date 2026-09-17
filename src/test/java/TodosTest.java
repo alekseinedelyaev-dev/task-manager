@@ -8,14 +8,14 @@ public class TodosTest {
     public void shouldAddTasks() {
         Todos manager = new Todos();
 
-        SimpleTodo task1 = new SimpleTodo(1, "Позвонить родителям");
-        SimpleTodo task2 = new SimpleTodo(2, "Купить молоко");
+        SimpleTask task1 = new SimpleTask(1, "Позвонить родителям");
+        SimpleTask task2 = new SimpleTask(2, "Купить молоко");
 
         manager.add(task1);
         manager.add(task2);
 
-        Todo[] expected = {task1, task2};
-        Todo[] actual = manager.getTasks();
+        Task[] expected = {task1, task2};
+        Task[] actual = manager.getTasks();
 
         assertArrayEquals(expected, actual);
     }
@@ -24,14 +24,14 @@ public class TodosTest {
     public void shouldSearchSimpleTask() {
         Todos manager = new Todos();
 
-        SimpleTodo task1 = new SimpleTodo(1, "Позвонить родителям");
-        SimpleTodo task2 = new SimpleTodo(2, "Купить молоко");
+        SimpleTask task1 = new SimpleTask(1, "Позвонить родителям");
+        SimpleTask task2 = new SimpleTask(2, "Купить молоко");
 
         manager.add(task1);
         manager.add(task2);
 
-        Todo[] expected = {task1};
-        Todo[] actual = manager.search("родителям");
+        Task[] expected = {task1};
+        Task[] actual = manager.search("родителям");
 
         assertArrayEquals(expected, actual);
     }
@@ -50,8 +50,8 @@ public class TodosTest {
 
         manager.add(epic);
 
-        Todo[] expected = {epic};
-        Todo[] actual = manager.search("домашнее");
+        Task[] expected = {epic};
+        Task[] actual = manager.search("домашнее");
 
         assertArrayEquals(expected, actual);
     }
@@ -69,8 +69,8 @@ public class TodosTest {
 
         manager.add(meeting);
 
-        Todo[] expected = {meeting};
-        Todo[] actual = manager.search("Нетология");
+        Task[] expected = {meeting};
+        Task[] actual = manager.search("Нетология");
 
         assertArrayEquals(expected, actual);
     }
@@ -79,11 +79,11 @@ public class TodosTest {
     public void shouldReturnEmptyArrayWhenNothingFound() {
         Todos manager = new Todos();
 
-        SimpleTodo task = new SimpleTodo(1, "Позвонить родителям");
+        SimpleTask task = new SimpleTask(1, "Позвонить родителям");
         manager.add(task);
 
-        Todo[] expected = {};
-        Todo[] actual = manager.search("магазин");
+        Task[] expected = {};
+        Task[] actual = manager.search("магазин");
 
         assertArrayEquals(expected, actual);
     }

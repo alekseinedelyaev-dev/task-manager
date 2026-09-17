@@ -1,8 +1,8 @@
 public class Todos {
-    private Todo[] tasks = new Todo[0];
+    private Task[] tasks = new Task[0];
 
-    public void add(Todo task) {
-        Todo[] tmp = new Todo[tasks.length + 1];
+    public void add(Task task) {
+        Task[] tmp = new Task[tasks.length + 1];
 
         for (int i = 0; i < tasks.length; i++) {
             tmp[i] = tasks[i];
@@ -12,16 +12,16 @@ public class Todos {
         tasks = tmp;
     }
 
-    public Todo[] getTasks() {
+    public Task[] getTasks() {
         return tasks;
     }
 
-    public Todo[] search(String query) {
-        Todo[] result = new Todo[0];
+    public Task[] search(String query) {
+        Task[] result = new Task[0];
 
-        for (Todo task : tasks) {
+        for (Task task : tasks) {
             if (task.matches(query)) {
-                Todo[] tmp = new Todo[result.length + 1];
+                Task[] tmp = new Task[result.length + 1];
 
                 for (int i = 0; i < result.length; i++) {
                     tmp[i] = result[i];
